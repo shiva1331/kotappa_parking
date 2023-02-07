@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:geolocator/geolocator.dart';
+// import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -17,45 +17,45 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Marker> _markers = [];
 
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
-  late Position _currentPosition;
-  late String _currentAddress;
+  // final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
+  // late Position _currentPosition;
+  // late String _currentAddress;
 
-  @override
-  void initState() {
-    super.initState();
-    _getCurrentLocation();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _getCurrentLocation();
+  // }
 
-  _getCurrentLocation() {
-    geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) {
-      setState(() {
-        _currentPosition = position;
-      });
+  // _getCurrentLocation() {
+  //   geolocator
+  //       .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
+  //       .then((Position position) {
+  //     setState(() {
+  //       _currentPosition = position;
+  //     });
 
-      _getAddressFromLatLng();
-    }).catchError((e) {
-      print(e);
-    });
-  }
+  //     _getAddressFromLatLng();
+  //   }).catchError((e) {
+  //     print(e);
+  //   });
+  // }
 
-  _getAddressFromLatLng() async {
-    try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(
-          _currentPosition.latitude, _currentPosition.longitude);
+  // _getAddressFromLatLng() async {
+  //   try {
+  //     List<Placemark> p = await geolocator.placemarkFromCoordinates(
+  //         _currentPosition.latitude, _currentPosition.longitude);
 
-      Placemark place = p[0];
+  //     Placemark place = p[0];
 
-      setState(() {
-        _currentAddress =
-            "${place.locality}, ${place.postalCode}, ${place.country}";
-      });
-    } catch (e) {
-      print(e);
-    }
-  }
+  //     setState(() {
+  //       _currentAddress =
+  //           "${place.locality}, ${place.postalCode}, ${place.country}";
+  //     });
+  //   } catch (e) {
+  //     print(e);
+  //   }
+  // }
 
   Future<List<Marker>> getData() async {
     List<Location> list = [];
